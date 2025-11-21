@@ -46,15 +46,19 @@
         </form>
     }
     <table>
+        <th>origen</th>
+        <th>destino</th>
+        <th>hora_sortida</th>
+        <th>dia_sortida</th>
+        <th>&nbsp;</th>
         @for (horariGuardado of horarisGuardados; track $index) {
             <tr>
                 <!-- <td>{{horariGuardado.id}}</td> -->
-                <td>Origen: </td>
                 <td>{{horariGuardado.origen}}</td>
-                <td>Destino: </td>
                 <td>{{horariGuardado.desti}}</td>
                 <td>{{horariGuardado.hora_sortida}}</td>
                 <td>{{horariGuardado.dia_sortida | date:'dd/MM/yyyy'}}</td>
+                <button (click)="eliminar(horariGuardado.id)">Eliminar</button>
             </tr>
         }
     </table>

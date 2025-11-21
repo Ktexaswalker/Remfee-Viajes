@@ -90,4 +90,11 @@ export class Viajes {
       localStorage.setItem("horariosGuardados", `${JSON.stringify(this.horarisGuardados)}`);
     }
   }
+  eliminar(borariId:number) {
+    this.horarisGuardados = this.horarisGuardados.filter(i => {
+      return i.id !== borariId
+    })
+    this.guardaViaje = this.guardaViaje.filter(i => i !== borariId);
+    localStorage.setItem("horariosGuardados", `${JSON.stringify(this.horarisGuardados)}`);
+  }
 }
