@@ -1,0 +1,61 @@
+<form action="" [formGroup]="contactForm">
+    <h3>Viajes disponibles de tren</h3>
+    <label for="origen">Origen</label>
+    <select id="origen" formControlName="ciutatOrigin" required>
+        @for (ciutat of ciutats; track $index) {
+            <option [value]="ciutat.id">{{ciutat.nom}}</option>
+        }
+    </select>
+    &nbsp;
+    <label for="destino">Destino</label>
+    <select id="destino" formControlName="ciutatDesti" required>
+        @for (ciutat of ciutats; track $index) {
+            <option [value]="ciutat.id">{{ciutat.nom}}</option>
+        }
+    </select>
+    <button type="submit" (click)="buscar()" [disabled]="contactForm.invalid">Buscar</button>
+</form>
+<div>
+    @if (mensaje) {
+        {{mensaje}}
+    } @else {
+        <form action="" [formGroup]="selectForm">
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>origen</th>
+                    <th>desti</th>
+                    <th>hora_sortida</th>
+                    <th>dia_sortida</th>
+                    <th>&nbsp;</th>
+                </tr>
+                @for (horari of horaris; track $index) {
+                    <tr>
+                        <td>{{horari.id}}</td>
+                        <td>{{horari.origen}}</td>
+                        <td>{{horari.desti}}</td>
+                        <td>{{horari.hora_sortida}}</td>
+                        <td>{{horari.dia_sortida}}</td>
+                        <td><input type="radio" 
+                            formControlName="radio"
+                            [value]="horari.id"></td>
+                    </tr>
+                }
+                <button (click)="selecciona()" [disabled]="selectForm.invalid">SELECCIONA UN HORARI</button>
+            </table>
+        </form>
+    }
+    <table>
+        @for (horariGuardado of horarisGuardados; track $index) {
+            <tr>
+                <!-- <td>{{horariGuardado.id}}</td> -->
+                <td>Origen: </td>
+                <td>{{horariGuardado.origen}}</td>
+                <td>Destino: </td>
+                <td>{{horariGuardado.desti}}</td>
+                <td>{{horariGuardado.hora_sortida}}</td>
+                <td>{{horariGuardado.dia_sortida | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        }
+    </table>
+</div>
