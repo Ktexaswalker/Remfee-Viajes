@@ -35,7 +35,7 @@
                         <td>{{horari.origen}}</td>
                         <td>{{horari.desti}}</td>
                         <td>{{horari.hora_sortida}}</td>
-                        <td>{{horari.dia_sortida}}</td>
+                        <td>{{horari.dia_sortida | date:'dd/MM/yyyy'}}</td>
                         <td><input type="radio" 
                             formControlName="radio"
                             [value]="horari.id"></td>
